@@ -1,3 +1,4 @@
-## LeetCode-Solutions-UnitTests
+# LeetCode - Solutions - Explanations - UnitTests
 
-### This repository will have my solutions to LeetCode problems and respective unit tests.
+This repository will have my solutions to LeetCode problems. 
+> It will also have my explanation (thought process) to those problems as comments.
