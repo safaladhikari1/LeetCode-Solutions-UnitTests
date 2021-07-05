@@ -1,4 +1,4 @@
-/*
+package difficultyEasy;/*
    Palindrome Linked List
    
    Given a singly linked list, determine if it is a palindrome.
@@ -18,7 +18,9 @@
    Algorithm:
    
    A Palindrome linked list is a list, which has same values from both forwards and backwards.
-   
+
+   Approach 1:
+
    1. This is kind of two part problem. In first part, we will go through the linked list using two pointers:
       Fast and Slow.
       
@@ -70,23 +72,68 @@
       }
       
       return true;
-      
-   ---------
-   
-   Time-Complexity: O(N), where N is the number of nodes in the list.
-   Space-Complexity: O(1)             
 
+   Time-Complexity: O(N), where N is the number of nodes in the list.
+   Space-Complexity: O(1)
+
+   ------
+
+   // Approach 2
+
+   1. Make a stack of ListNode
+
+   2. Visit every ListNodes in the LinkedList, store them on a Stack
+
+   3. Visit the LinkedList again from head
+
+      if ListNode.val != Stack.pop().val
+         return false
+
+   4. If it passes the above, return true
+
+   Time-Complexity: O(N), N is the number of ListNodes in the List
+   Space-Complexity: O(N), we use N space for our Stack.
 */
+
+import helperClass.ListNode;
+
+import java.util.Stack;
 
 class PalindromeLinkedList
 {
    public static void main(String[] args)
    {
+      PalindromeLinkedList solution = new PalindromeLinkedList();
       ListNode myNode = new ListNode(1, new ListNode(0, new ListNode(1)));
       
-      System.out.println(isPalindrome(myNode));
+      System.out.println(solution.isPalindrome(myNode));
    }
-   
+
+   // Approach 2
+   public boolean isPalindrome(ListNode head) {
+      Stack<ListNode> tempStack = new Stack<>();
+      ListNode current = head;
+
+      while(current != null) {
+         tempStack.push(current);
+         current = current.next;
+      }
+
+      current = head;
+
+      while(current != null) {
+         if(current.val != tempStack.pop().val) {
+            return  false;
+         }
+
+         current = current.next;
+      }
+
+      return true;
+   }
+
+   // Approach 1
+   /*
    public static boolean isPalindrome(ListNode head)
    {
       ListNode slow = head;
@@ -129,61 +176,5 @@ class PalindromeLinkedList
       
       return previous;
    }
-   
-   /*
-   public static boolean isPalindrome(ListNode head)
-   {
-      ListNode current = head;
-      
-      if(current == null || current.next == null)
-      {
-         return true;
-      }
-      
-      HashMap<Integer, Integer> myMap = new HashMap<>();
-
-      while(current != null)
-      {
-         if(!myMap.containsKey(current.val))
-         {
-            myMap.put(current.val, 1);
-         }
-         else
-         {
-            myMap.put(current.val, myMap.get(current.val) - 1);
-         }
-         
-         if(myMap.get(current.val) <= 1)
-         {
-            return true;
-         }
-         
-         current = current.next;
-      }
-          
-      return false;
-   }
-   */
-   
-   public static class ListNode
-   {
-      int val;
-      ListNode next;
-      
-      ListNode()
-      {
-      
-      }
-      
-      ListNode(int val)
-      {
-         this.val = val;
-      }
-      
-      ListNode(int val, ListNode next)
-      {
-         this.val = val;
-         this.next = next;
-      } 
-   }
+    */
 }
