@@ -37,7 +37,7 @@
    
    Approach 2 (Look-up table):
    
-   1. Since there are only 31 numbers in total for an 32-bit integer,
+   1. Since there are only 31 numbers (that are power of two) in total for an 32-bit integer,
       
       We create a fixed-size list of those 31 numbers using Arrays.asList()
       Then construct a new HashSet containing those elements from the list.
