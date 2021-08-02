@@ -12,9 +12,18 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.2")
+
+    testImplementation("junit:junit:4.13")
+    testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.7.2")
+
     implementation 'org.mockito:mockito-core:3.8.0'
     implementation 'org.mockito:mockito-junit-jupiter:3.8.0'
     implementation 'org.hamcrest:java-hamcrest:2.0.0.0'
 
+}
+
+test {
+    useJUnitPlatform()
 }
